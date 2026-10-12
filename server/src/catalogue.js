@@ -123,5 +123,13 @@ export const PRODUCTS = [
   p('P05', 'Tissues 110pk', P, 1.20, 2.50, 180, null, 0.8),
   p('P06', 'USB-C Charging Cable', P, 4.00, 10.00, 70, null, 0.3),
   p('P07', 'AA Batteries 4pk', P, 3.00, 6.50, 70, null, 0.3),
-  p('P08', 'Compact Umbrella', P, 6.00, 14.00, 50, null, 0.2)
+  p('P08', 'Compact Umbrella', P, 6.00, 14.00, 50, null, 0.2),
+
+  // Long-tail items: slow sellers that a small store still carries
+  p('G13', 'Anchovy Fillets 50g', G, 2.00, 3.80, 40, null, 0.05),
+  p('G14', 'Tahini 400g', G, 4.50, 7.50, 30, null, 0.04),
+  p('G15', 'Gluten-Free Pasta 500g', G, 2.80, 4.80, 40, null, 0.06),
+  p('S10', 'Mixed Nuts & Fruit 300g', S, 3.50, 6.00, 35, null, 0.06),
+  p('H08', 'Glass Cleaner 500ml', H, 2.60, 4.60, 40, null, 0.05),
+  p('P09', 'Sewing Kit', P, 1.20, 3.50, 30, null, 0.04)
 ];
