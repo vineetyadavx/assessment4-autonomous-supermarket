@@ -127,6 +127,17 @@ CREATE TABLE IF NOT EXISTS brain_events (
   ref_order_id  INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS lost_sales (
+  lost_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id      TEXT NOT NULL REFERENCES runs(run_id),
+  day         INTEGER NOT NULL,
+  hour        INTEGER NOT NULL,
+  visit_id    INTEGER REFERENCES customer_visits(visit_id),
+  product_id  TEXT NOT NULL,
+  qty         INTEGER NOT NULL,
+  reason      TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_movements_run_day ON inventory_movements(run_id, day);
 CREATE INDEX IF NOT EXISTS idx_movements_run_product ON inventory_movements(run_id, product_id);
 CREATE INDEX IF NOT EXISTS idx_visits_run_day ON customer_visits(run_id, day);
@@ -148,7 +159,8 @@ export const APPEND_ONLY_TABLES = [
   'transaction_items',
   'replenishment_orders',
   'cash_ledger',
-  'brain_events'
+  'brain_events',
+  'lost_sales'
 ];
 
 export function initSchema(db) {
