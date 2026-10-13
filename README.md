@@ -85,9 +85,9 @@ node server/src/runEngineTest.js brain runs 60 days in a throwaway in-memory dat
 
 ## AI collaboration
 
-**Tools:** Claude (Anthropic) in a chat window did most of the planning, drafting and debugging with me. Cursor was my editor and terminal. I ran every command myself and read the output.
+**Tools:** Claude (Anthropic) in a chat window did the planning, drafting and debugging with me. Cursor was my editor and terminal. I ran every command myself and read the output while improving the design and logical changes.
 
-**What AI helped with:** the first draft of the product catalogue and its prices, the model parameters, the database schema, the engine and Store Brain rules, the SQL for the reports and assurance checks, the React pages and CSS, a first draft of the three written findings (from the figures printed by my final run), and this README.
+**What AI helped with:** the first draft of the product catalogue and its prices, the model parameters, the database schema, the engine and Store Brain rules, the SQL for the reports and assurance checks, the React pages and CSS, a first draft of the three written findings (from the figures printed by my final run), and the Format of this README to make it look nice once finished.
 
 **What I reviewed, changed or rejected:**
 
