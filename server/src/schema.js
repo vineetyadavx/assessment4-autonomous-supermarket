@@ -138,6 +138,24 @@ CREATE TABLE IF NOT EXISTS lost_sales (
   reason      TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS run_findings (
+  finding_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id          TEXT NOT NULL REFERENCES runs(run_id),
+  finding_no      INTEGER NOT NULL,
+  title           TEXT NOT NULL,
+  observation     TEXT NOT NULL,
+  evidence        TEXT NOT NULL,
+  diagnosis       TEXT NOT NULL,
+  implication     TEXT NOT NULL,
+  recommendation  TEXT NOT NULL,
+  limitation      TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS submitted_run (
+  id         INTEGER PRIMARY KEY CHECK (id = 1),
+  run_id     TEXT NOT NULL REFERENCES runs(run_id),
+  marked_at  TEXT NOT NULL
+);
 CREATE INDEX IF NOT EXISTS idx_movements_run_day ON inventory_movements(run_id, day);
 CREATE INDEX IF NOT EXISTS idx_movements_run_product ON inventory_movements(run_id, product_id);
 CREATE INDEX IF NOT EXISTS idx_visits_run_day ON customer_visits(run_id, day);
@@ -146,6 +164,16 @@ CREATE INDEX IF NOT EXISTS idx_items_run_product ON transaction_items(run_id, pr
 CREATE INDEX IF NOT EXISTS idx_orders_run_day ON replenishment_orders(run_id, day_placed);
 CREATE INDEX IF NOT EXISTS idx_cash_run_day ON cash_ledger(run_id, day);
 CREATE INDEX IF NOT EXISTS idx_brain_run_day ON brain_events(run_id, day);
+CREATE INDEX IF NOT EXISTS idx_txn_visit ON transactions(visit_id);
+CREATE INDEX IF NOT EXISTS idx_items_txn ON transaction_items(txn_id);
+CREATE INDEX IF NOT EXISTS idx_items_run_day ON transaction_items(run_id, day);
+CREATE INDEX IF NOT EXISTS idx_movements_lot ON inventory_movements(lot_id);
+CREATE INDEX IF NOT EXISTS idx_lots_run_product ON inventory_lots(run_id, product_id);
+CREATE INDEX IF NOT EXISTS idx_lost_run_day ON lost_sales(run_id, day);
+CREATE INDEX IF NOT EXISTS idx_lost_run_product ON lost_sales(run_id, product_id);
+CREATE INDEX IF NOT EXISTS idx_orders_run_product ON replenishment_orders(run_id, product_id);
+CREATE INDEX IF NOT EXISTS idx_orders_run_due ON replenishment_orders(run_id, day_due);
+CREATE INDEX IF NOT EXISTS idx_brain_run_type ON brain_events(run_id, event_type, product_id);
 `;
 
 export const APPEND_ONLY_TABLES = [
@@ -160,7 +188,8 @@ export const APPEND_ONLY_TABLES = [
   'replenishment_orders',
   'cash_ledger',
   'brain_events',
-  'lost_sales'
+  'lost_sales',
+  'run_findings'
 ];
 
 export function initSchema(db) {
